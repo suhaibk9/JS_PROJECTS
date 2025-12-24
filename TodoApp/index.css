@@ -1,0 +1,55 @@
+:root {
+  /* Core Palette */
+  --color-primary: #5cabff;       /* The button blue */
+  --color-white: #ffffff;         /* Pure white */
+  
+  /* Layout & Structure */
+  --color-page-bg: #f4f4f9;       /* Light gray/blue page background */
+  --color-card-bg: #ffffff;       /* Container background */
+  --color-border: #dddddd;        /* Input border */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-page-bg);
+}
+
+.container {
+  background-color: var(--color-card-bg);
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px 10px var(--color-shadow);
+  padding: 20px;
+}
+
+.container h1 {
+  text-align: center;
+}
+
+#todo-input {
+  padding: 10px;
+  width: 75%;
+  border: 2px solid var(--color-border);
+  border-radius: 2px;
+}
+
+#addBtn {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 2px;
+  cursor: pointer;
+}
