@@ -157,6 +157,20 @@ const TodoActions = {
 
     StorageService.updateTodo(editingId, todoText);
     const addBtn = document.getElementById("addBtn");
+    const todos = StorageService.getTodos();
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].id === editingId) {
+        console.log("Edit Id", editingId);
+        if (todos[i].completed ){
+          todos[i].completed = false;
+          const li = document.querySelector(`[data-id="${editingId}"]`);
+          console.log("li", li);
+          li.classList.remove("todo-done");
+        }
+        break;
+      }
+    }
+    localStorage.setItem("todos", JSON.stringify(todos));
     resetEditMode(inputBox, addBtn);
     renderTodos(todoContainer);
   },
