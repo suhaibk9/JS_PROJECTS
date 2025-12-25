@@ -150,3 +150,13 @@ body {
   display: flex;
   gap: 8px;
 }
+
+/* Completed todos - needs !important to override nth-child selectors */
+.todo-item.todo-done {
+  background-color: #d1fae5 !important; /* light green */
+}
+
+.todo-item.todo-done span {
+  text-decoration: line-through;
+  color: #6b7280;
+}
