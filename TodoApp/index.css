@@ -1,55 +1,152 @@
 :root {
-  /* Core Palette */
-  --color-primary: #5cabff;       /* The button blue */
-  --color-white: #ffffff;         /* Pure white */
-  
-  /* Layout & Structure */
-  --color-page-bg: #f4f4f9;       /* Light gray/blue page background */
-  --color-card-bg: #ffffff;       /* Container background */
-  --color-border: #dddddd;        /* Input border */
-  --color-shadow: rgba(0, 0, 0, 0.1);
+  /* ===== Theme variables (easy to tweak later) ===== */
+
+  /* Brand / Actions */
+  --color-primary: #4f8df7; /* main blue */
+  --color-primary-hover: #3f7ae0; /* darker blue on hover */
+
+  /* Neutrals */
+  --color-white: #ffffff;
+  --color-text: #2b2b2b; /* default text */
+  --color-muted-text: #6b7280; /* lighter, secondary text */
+
+  /* Surfaces (background layers) */
+  --color-page-bg: #f5f7fb; /* entire page */
+  --color-card-bg: #ffffff; /* todo card area */
+  --color-item-odd: #f8f9fb; /* odd list rows */
+  --color-item-even: #eceff4; /* even list rows */
+
+  /* Borders & Effects */
+  --color-border: #d1d5db;
+  --color-shadow: rgba(0, 0, 0, 0.08);
 }
 
+/* Use border-box everywhere so padding doesn't explode layouts */
 html {
   box-sizing: border-box;
 }
 
 *,
-*::after,
-*::before {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
+/* Basic page reset + base font + background */
 body {
-  padding: 0;
   margin: 0;
+  padding: 0;
   background-color: var(--color-page-bg);
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* Main card container */
 .container {
   background-color: var(--color-card-bg);
   max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 0 10px 10px var(--color-shadow);
+  margin: 40px auto;
   padding: 20px;
+  box-shadow: 0 8px 24px var(--color-shadow);
+  border-radius: 6px;
 }
 
 .container h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
+/* Todo input */
 #todo-input {
   padding: 10px;
   width: 75%;
   border: 2px solid var(--color-border);
-  border-radius: 2px;
+  border-radius: 4px;
+  outline: none;
 }
 
+/* Slight highlight when typing */
+#todo-input:focus {
+  border-color: var(--color-primary);
+}
+
+/* Add button */
 #addBtn {
   padding: 10px 20px;
   border: none;
   background-color: var(--color-primary);
   color: var(--color-white);
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Todo list container */
+#todo-container {
+  list-style-type: none;
+  width: 95%;
+  padding-left: 0;
+  margin: 20px auto 0;
+}
+
+/* Individual todo items */
+#todo-container li {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/* Remove spacing from last item */
+#todo-container li:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternating list background colors */
+#todo-container li:nth-child(odd) {
+  background-color: var(--color-item-odd);
+}
+
+#todo-container li:nth-child(even) {
+  background-color: var(--color-item-even);
+}
+
+/* ===== Filter buttons (All / Pending / Completed) ===== */
+.filterBtn {
+  padding: 10px 15px;
+  margin: 5px 5px 15px 0;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Hover state for filters */
+.filterBtn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Completed filter gets a green theme */
+.filterBtn[data-filter="completed"] {
+  background-color: #35a66a;
+}
+
+.filterBtn[data-filter="completed"]:hover {
+  background-color: #2c8f5a;
+}
+.empty-state {
+  color: #777;
+  font-style: italic;
+  padding: 10px 0;
+}
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-wrapper {
+  display: flex;
+  gap: 8px;
 }
